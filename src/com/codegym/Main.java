@@ -6,18 +6,50 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhap so luong san pham: ");
-        int size = scanner.nextInt();
-        MaterialManagement materialManagement = new MaterialManagement(size);
-        MaterialManagement[] materials = materialManagement.getMaterials();
-        for (int i = 0; i < size; i++) {
-            materials[i] = materialManagement.inputMaterial(scanner);
-        }
+        int select;
+        ManagerMaterial managerMaterials = new ManagerMaterial();
 
-        for (MaterialManagement managements: materials) {
-            managements.displayMaterial();
+        do {
+            System.out.println("Menu");
+            System.out.println("1.Them san pham");
+            System.out.println("2.Hien thi san pham");
+            System.out.println("3.Xoa san pham");
+            System.out.println("4.Tinh chiet khau");
+            System.out.println("0.Thoat");
+            System.out.print("Nhap lua chon cua ban: ");
+            select = scanner.nextInt();
 
-        }
+            switch (select) {
+                case 1:
+                    managerMaterials.addNewMaterial(managerMaterials.inputMaterial(managerMaterials, scanner));
+                    break;
+                case 2:
+                    managerMaterials.displayMaterial();
+                    break;
+                case 3:
+                    scanner.nextLine();
+                    System.out.print("Nhap id can xoa: ");
+                    String id = scanner.nextLine();
+                    int index = managerMaterials.findMaterialId(id);
+                    if (index == -1) {
+                        System.out.println("Không tìm thấy");
+                    } else {
+                        managerMaterials.removeMaterial(index);
+                        managerMaterials.displayMaterial();
+                    }
+                    break;
+                case 4:
+                    System.out.println("Chiet Khau: ");
+                    managerMaterials.getRealMoneyMaterial();
+                    break;
+                case 0:
+                    System.out.print("Bye");
+                    break;
+                default:
+                    System.out.println("Nhap sai roi nhap ai dum");
+            }
+        } while (select != 0);
+
 
     }
 }

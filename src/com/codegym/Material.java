@@ -1,15 +1,14 @@
 package com.codegym;
 
+import InteFace.Discount;
+
 import java.time.LocalDate;
 
-public abstract class Material {
+public abstract class Material implements Discount {
     private String id;
     private String name;
     private LocalDate manufacturingDate;
     private int cost;
-    private Meat meat;
-    private CrispyFlour crispyFlour;
-
     public Material() {
 
     }
@@ -19,22 +18,6 @@ public abstract class Material {
         this.name = name;
         this.manufacturingDate = manufacturingDate;
         this.cost = cost;
-    }
-
-    public Meat getMeat() {
-        return meat;
-    }
-
-    public void setMeat(Meat meat) {
-        this.meat = meat;
-    }
-
-    public CrispyFlour getCrispyFlour() {
-        return crispyFlour;
-    }
-
-    public void setCrispyFlour(CrispyFlour crispyFlour) {
-        this.crispyFlour = crispyFlour;
     }
 
     public String getId() {
@@ -73,5 +56,13 @@ public abstract class Material {
 
     public abstract LocalDate getExpiryDate();
 
-
+    @Override
+    public String toString() {
+        return "Material{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", manufacturingDate=" + manufacturingDate +
+                ", cost=" + cost +
+                '}';
+    }
 }
